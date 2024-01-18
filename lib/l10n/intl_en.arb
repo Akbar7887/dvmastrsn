@@ -1,0 +1,23 @@
+{
+  "adress": "Адрес компании:",
+  "certificat": "Copyright © 2020 Template by DSK BINOKOR",
+  "catalog": "Каталоги",
+  "form_order":"Форма заказа",
+  "mark_make": "Марка изделия:",
+  "lenght": "Длина",
+  "field_validate": "Поля не заполнено!",
+  "widht": "Ширина",
+  "height": "Высота",
+  "quantity": "Кол-во",
+  "to_shopbox": "В Корзину",
+  "description": "Описание",
+  "characteristic": "Характеристики",
+  "volume": "Объем",
+  "mass": "Масса",
+  "klass_concrate": "Класс бетона",
+  "adress_company": "Адрес компании:",
+  "telephone": "Телефон",
+  "telegram": "Телеграм",
+  "email": "E-mail",
+  "socset": "Социальные сети"
+}
