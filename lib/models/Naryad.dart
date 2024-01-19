@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'Item.dart';
 
 class Naryad {
@@ -6,8 +8,9 @@ class Naryad {
     List<Item>? items;
     String? nomer;
     String? status;
+    String? amount;
 
-    Naryad({this.auto, this.date, this.items, this.nomer, this.status});
+    Naryad({this.auto, this.date, this.items, this.nomer, this.status, this.amount});
 
     factory Naryad.fromJson(Map<String, dynamic> json) {
         return Naryad(
@@ -15,7 +18,8 @@ class Naryad {
             date: json['date'], 
             items: json['items'] != null ? (json['items'] as List).map((i) => Item.fromJson(i)).toList() : null, 
             nomer: json['nomer'], 
-            status: json['status'], 
+            status: json['status'],
+            amount: json['amount']
         );
     }
 
@@ -28,6 +32,7 @@ class Naryad {
         if (this.items != null) {
             data['items'] = this.items!.map((v) => v.toJson()).toList();
         }
+        data['amount'] = this.amount;
         return data;
     }
 }

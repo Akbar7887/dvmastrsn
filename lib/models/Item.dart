@@ -1,7 +1,10 @@
+
+
 class Item {
-    int? amount;
+
+    String? amount;
     String? procent;
-    int? quantity;
+    String? quantity;
     String? service;
 
     Item({this.amount, this.procent, this.quantity, this.service});
