@@ -6,33 +6,56 @@ import 'package:get/get_core/src/get_main.dart';
 import '../controller/Controller.dart';
 import '../ui.dart';
 
-final Controller _controller = Get.find();
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // controller.fetchListNyad("DVБП-00183");
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  final Controller _controller = Get.find();
+  late List<bool> _rows = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+    _rows = new List.generate(_controller.listNaryad.length, (index) => false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Obx(() => Scaffold(
         backgroundColor: Ui.backColor,
         body: ListView.builder(
             itemCount: _controller.listNaryad.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
+              return InkWell(
+                  onTap: (){
+                    setState(() {
+                      _rows[index] = !_rows[index];
+                    });
+                  },
+                  child: Container(
                   margin: EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  padding: EdgeInsets.all(10),
+                  height: !_rows[index]
+                      ? 130
+                      : 100 +
+                          (_controller.listNaryad[index].items!.length * 55),
+                  padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
                       color: Colors.blueAccent[200],
                       // border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(10)),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                           child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             child: Text(
@@ -48,6 +71,7 @@ class HomePage extends StatelessWidget {
                           )),
                         ],
                       )),
+                      Divider(),
                       Container(
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,33 +124,96 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Divider(),
-                      Expanded(
-                        child: ListView(
-                          children:
-                              _controller.listNaryad[index].items!.map((e) {
-                            return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                              Container(
-                                child: Text(
-                                  e.service!,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                width: MediaQuery.of(context).size.width/2,
+                      !_rows[index]
+                          ? Container()
+                          : Expanded(
+                              child: DataTable(
+                              border: TableBorder.all(
+                                width: 0.5,
                               ),
-                              Container(
-                                child: Text(
-                                  e.quantity!,
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              )
-                            ],);
-                          }).toList(),
-                        ),
-                      )
+                              headingRowHeight: 20,
+                              headingRowColor:
+                                  MaterialStateProperty.all(Colors.orange),
+                              columnSpacing: 10,
+                              headingTextStyle: TextStyle(
+                                  fontFamily: Ui.fontPlay, color: Colors.black),
+                              columns: [
+                                DataColumn(
+                                    label: Container(
+                                        alignment: Alignment.center,
+                                        // width: MediaQuery.of(context).size.width / 3,
+                                        child: Text(
+                                          "Услуга",
+                                          style: TextStyle(fontSize: 10),
+                                        ))),
+                                DataColumn(
+                                    label: Container(
+                                        alignment: Alignment.center,
+                                        // width: ,
+                                        child: Text(
+                                          "Кол-во",
+                                          style: TextStyle(fontSize: 10),
+                                        ))),
+                                DataColumn(
+                                    label: Container(
+                                        alignment: Alignment.center,
+                                        // width: 20,
+                                        child: Text(
+                                          "Проц.",
+                                          style: TextStyle(fontSize: 10),
+                                        ))),
+                                DataColumn(
+                                    label: Container(
+                                        // width: 20,
+                                        child: Text(
+                                  "Сумма",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(fontSize: 10),
+                                ))),
+                              ],
+                              rows:
+                                  _controller.listNaryad[index].items!.map((e) {
+                                return DataRow(cells: [
+                                  DataCell(
+                                    Text(
+                                      e.service!,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 10),
+                                    ),
+                                  ),
+                                  DataCell(Container(
+                                    child: Text(
+                                      e.quantity!,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 10),
+                                    ),
+                                    alignment: Alignment.center,
+                                  )),
+                                  DataCell(
+                                    Container(
+                                      child: Text(
+                                        e.procent!,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 10),
+                                      ),
+                                      alignment: Alignment.center,
+                                    ),
+                                  ),
+                                  DataCell(Container(
+                                    child: Text(
+                                      e.amount!,
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    alignment: Alignment.centerRight,
+                                  ))
+                                ]);
+                              }).toList(),
+                            )),
                     ],
-                  ));
+                  )));
             })));
   }
 }
