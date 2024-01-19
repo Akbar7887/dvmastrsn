@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.black,
         bottomAppBarColor: Colors.black,
         textTheme: TextTheme(),
-        fontFamily: Ui.font,
+        fontFamily: Ui.fontMontserrat,
         // textTheme: TextTheme(bodyText1: ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         //primarySwatch: Colors.black87,
