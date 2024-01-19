@@ -20,7 +20,7 @@ class ApiConnector extends GetConnect{
   };
 
   Future<List<dynamic>> getall(String url, String id) async {
-    Uri uri = Uri.parse("${Ui.url}${url}");
+    Uri uri = Uri.parse("${Ui.url}${url}${id}");
 
     final response = await http.get(uri, headers: header);
 

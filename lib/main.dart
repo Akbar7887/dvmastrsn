@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
-
 import 'controller/Controller.dart';
-import 'generated/l10n.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,18 +21,18 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: Ui.companyName,
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
+      // localizationsDelegates: [
+      //   S.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      //   GlobalCupertinoLocalizations.delegate,
+      // ],
+      // supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
-        backgroundColor: Colors.black,
-        bottomAppBarColor: Colors.black,
+        backgroundColor: Ui.backColor,
+        bottomAppBarColor: Ui.backColor,
         textTheme: TextTheme(),
-        fontFamily: Ui.fontMontserrat,
+        // fontFamily: Ui.fontPlay,
         // textTheme: TextTheme(bodyText1: ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         //primarySwatch: Colors.black87,
@@ -50,5 +46,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

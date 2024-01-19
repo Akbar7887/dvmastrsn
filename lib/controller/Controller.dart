@@ -10,7 +10,7 @@ class Controller extends GetxController{
 
   @override
   onInit() {
-
+    fetchListNyad("DVБП-00183");
     super.onInit();
   }
 
