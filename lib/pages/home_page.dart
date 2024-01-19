@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                             text: 'Автомобиль',
                             children: [
                               TextSpan(
-                                  text: '${controller.listNaryad[index].auto!}')
+                                  text: controller.listNaryad[index].auto!)
                             ],
                             style: TextStyle(
                                 color: Colors.white,
