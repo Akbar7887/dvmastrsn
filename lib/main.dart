@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
       // ],
       // supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
-        backgroundColor: Ui.backColorFrom,
-        bottomAppBarColor: Ui.backColorTo0,
+        // backgroundColor: Ui.backColorFrom,
+        // bottomAppBarColor: Ui.backColorTo0,
         textTheme: TextTheme(),
         // fontFamily: Ui.fontPlay,
         // textTheme: TextTheme(bodyText1: ),
