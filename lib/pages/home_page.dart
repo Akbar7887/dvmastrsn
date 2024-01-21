@@ -1,7 +1,8 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dvmastrsn/controller/ApiConnector.dart';
 import 'package:dvmastrsn/widgets/appBarDv.dart';
-import 'package:dvmastrsn/widgets/bottomnavbar.dart';
+import 'package:dvmastrsn/widgets/bottomNavBar.dart';
+import 'package:dvmastrsn/widgets/drawerDv.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/Naryad.dart';
@@ -19,6 +20,8 @@ class _HomePageState extends State<HomePage> {
   late List<bool> _rows;
   final _api = ApiConnector();
   late List<Naryad> _listNaryad = [];
+  // final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 
   @override
   void initState() {
@@ -29,8 +32,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // drawerEnableOpenDragGesture: true,
+      // key: _key,
       backgroundColor: Ui.backColorFrom,
       appBar: AppBarDv(),
+      drawer: DrawerDv(),
       body: FutureBuilder(
           future: _api.getall("dv_test/hs/mobile/zakaz/", "DVБП-00175"),
           builder: (context, snapshot) {

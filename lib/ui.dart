@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class Ui {
   static final companyName = 'Driver\'s Village\ Service';
+  static final telephon = "+99871 200 70 70";
   static final fontMontserrat = 'Montserrat'; //sans-serif
   static final fontPlay = 'Play'; //sans-serif
   static final fontPlaybold = 'PlayBold';
