@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings
-
 import 'dart:convert';
 
 import 'package:get/get.dart';
@@ -19,8 +17,8 @@ class ApiConnector extends GetConnect{
     'authorization': 'Basic ' + base64Encode(utf8.encode('${Ui.login}:${Ui.password}')),
   };
 
-  Future<List<dynamic>> getall(String url, String id) async {
-    Uri uri = Uri.parse("${Ui.url}${url}${id}");
+  Future<List<dynamic>> getall(String url, String id, String date) async {
+    Uri uri = Uri.parse("${Ui.url}${url}${id}/${date}");
 
     final response = await http.get(uri, headers: header);
 

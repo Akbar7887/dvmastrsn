@@ -15,14 +15,19 @@ class NaryadPage extends StatefulWidget {
 class _NaryadPageState extends State<NaryadPage> {
   late List<bool> _rows;
   final _api = ApiConnector();
-  late List<Naryad> _listNaryad = [];
+  late List<Naryad> _listNaryad;
   late String _date;
+  late String _datapicker;
 
   @override
   void initState() {
     super.initState();
     _rows = [];
-    _date = DateFormat('dd-MMMM-yyyy').format(DateTime.now());
+    _listNaryad = [];
+    var yaer = DateTime.now().year;
+    var month = DateTime.now().month;
+    _date = DateFormat('yyyyMMdd').format(DateTime(yaer, month, 1));
+    _datapicker = DateFormat('dd MMMM yyyy').format(DateTime(yaer, month, 1));
   }
 
   Future ShowDatePicker() async {
@@ -33,40 +38,56 @@ class _NaryadPageState extends State<NaryadPage> {
         lastDate: DateTime(2100));
   }
 
+  Future<List<dynamic>> _getAll() async {
+    return await _api.getall("dv_test/hs/mobile/zakaz/", "DVБП-00175", _date);
+  }
+
+  // DateFormat('yyyyMMdd').format(DateTime.now())
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: _api.getall("dv_test/hs/mobile/zakaz/", "DVБП-00175"),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            var json = snapshot.data!;
-            _listNaryad = json.map((e) => Naryad.fromJson(e)).toList();
-            if (_rows.isEmpty) {
-              _rows = new List.generate(_listNaryad.length, (index) => false);
-            }
-            return Column(
-              children: [
-                Container(
-                    child: ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Ui.backColorFrom)),
-                  child: Text(_date,
-                      style: TextStyle(color: Colors.white)),
-                  // keyboardType: TextInputType.datetime,
-                  onPressed: () async {
-                    ShowDatePicker().then((value) {
-                      setState(() {
-                        _date = DateFormat('dd-MMMM-yyyy').format(value);
-                      });
-                    });
-                  },
-                )),
-                Expanded(
+    return Column(
+      children: [
+        Container(
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Ui.backColorFrom)),
+              child: Text(_datapicker, style: TextStyle(color: Colors.white)),
+              // keyboardType: TextInputType.datetime,
+              onPressed: () async {
+                ShowDatePicker().then((date) {
+                  setState(() {
+                    _date = DateFormat('yyyyMMdd').format(date);
+                    _datapicker = DateFormat('dd MMMM yyyy').format(date);
+                    _getAll();
+                    // _api
+                    //     .getall(
+                    //         "dv_test/hs/mobile/zakaz/",
+                    //         "DVБП-00175",
+                    //         DateFormat('yyyyMMdd').format(date))
+                    //     .then((value) {
+                    //   this._listNaryad =
+                    //       value.map((e) => Naryad.fromJson(e)).toList();
+                    // });
+                  });
+                });
+              },
+            )),
+        FutureBuilder(
+            future: _getAll(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                var json = snapshot.data!;
+                _listNaryad = json.map((e) => Naryad.fromJson(e)).toList();
+                if (_rows.isEmpty) {
+                  _rows =
+                      new List.generate(_listNaryad.length, (index) => false);
+                }
+                return Expanded(
                     child: ListView.builder(
                         itemCount: _listNaryad.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -321,10 +342,10 @@ class _NaryadPageState extends State<NaryadPage> {
                                             )),
                                     ],
                                   )));
-                        }))
-              ],
-            );
-          }
-        });
+                        }));
+              }
+            })
+      ],
+    );
   }
 }

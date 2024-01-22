@@ -75,7 +75,7 @@ class DrawerDv extends StatelessWidget {
                       "Заказ-наряд",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: Ui.fontMontserrat),
                     )),
 
@@ -83,7 +83,10 @@ class DrawerDv extends StatelessWidget {
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
-              Divider(),
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider(color: Colors.white24),
+              ),
               InkWell(
                 child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
@@ -91,7 +94,7 @@ class DrawerDv extends StatelessWidget {
                       "Выработка",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: Ui.fontMontserrat),
                     )),
 
@@ -99,7 +102,10 @@ class DrawerDv extends StatelessWidget {
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
-              Divider(),
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider(color: Colors.white24),
+              ),
               InkWell(
                 child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
@@ -107,7 +113,7 @@ class DrawerDv extends StatelessWidget {
                       "Услуги",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: Ui.fontMontserrat),
                     )),
 
@@ -115,7 +121,10 @@ class DrawerDv extends StatelessWidget {
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
-              Divider(),
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider(color: Colors.white24),
+              ),
               InkWell(
                 child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
@@ -123,16 +132,15 @@ class DrawerDv extends StatelessWidget {
                       "Выход",
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 25,
+                          fontSize: 20,
                           fontFamily: Ui.fontMontserrat),
                     )),
-
                 onTap: () {},
-                // mouseCursor: MouseCursor.defer,
-                // onTap: () {},
               ),
-              Divider(),
-
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider(color: Colors.white24),
+              ),
             ],
           )),
     );

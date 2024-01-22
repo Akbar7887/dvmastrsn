@@ -14,8 +14,8 @@ class Controller extends GetxController{
     super.onInit();
   }
 
- fetchListNyad(String id) async {
-    final json = await api.getall("dv_test/hs/mobile/zakaz/", id);
+ fetchListNyad(String id, String date) async {
+    final json = await api.getall("dv_test/hs/mobile/zakaz/", id, date);
     listNaryad.value = json.map((e) => Naryad.fromJson(e)).toList();
     // listKompleks.value.sort((a, b) => a.id!.compareTo(b.id!));
   }
