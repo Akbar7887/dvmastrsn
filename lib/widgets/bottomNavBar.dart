@@ -1,9 +1,13 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:dvmastrsn/controller/Controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../ui.dart';
 
 int currentindex = 0;
+final Controller _conroller = Get.find();
 
 Widget BottomNavBar() {
   return ConvexAppBar(
@@ -34,6 +38,7 @@ Widget BottomNavBar() {
           size: 25,
         ),
         title: "З-Наряд",
+
         // activeIcon: Icon(
         //   Icons.car_repair,
         //   color: Ui.backColorFrom,
@@ -78,17 +83,7 @@ Widget BottomNavBar() {
       ),
     ],
     onTap: (int index) {
-      if (index == 0) {
-        // context.read<SectionProvider>().changeSection(null);
-        // context.read<SimpleProvider>().changepage(1);
-      } else if (index == 1) {
-        // context.read<SimpleProvider>().changepage(6);
-      } else if (index == 2) {
-        // context.read<SimpleProvider>().changepage(9);
-      } else if (index == 3) {
-        // context.read<SimpleProvider>().changepage(5);
-      }
-
+      _conroller.changePage(index + 1);
       currentindex = index;
     },
   );

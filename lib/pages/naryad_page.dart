@@ -1,4 +1,6 @@
+import 'package:dvmastrsn/controller/Controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../controller/ApiConnector.dart';
@@ -18,6 +20,7 @@ class _NaryadPageState extends State<NaryadPage> {
   late List<Naryad> _listNaryad;
   late String _date;
   late String _datapicker;
+  final Controller _controller = Get.find();
 
   @override
   void initState() {
@@ -39,7 +42,7 @@ class _NaryadPageState extends State<NaryadPage> {
   }
 
   Future<List<dynamic>> _getAll() async {
-    return await _api.getall("dv_test/hs/mobile/zakaz/", "DVБП-00175", _date);
+    return await _api.getall(Ui.urlzakaz, "");
   }
 
   // DateFormat('yyyyMMdd').format(DateTime.now())
