@@ -1,5 +1,6 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dvmastrsn/controller/ApiConnector.dart';
+import 'package:dvmastrsn/pages/service_page.dart';
 import 'package:dvmastrsn/pages/virabotka_page.dart';
 import 'package:dvmastrsn/widgets/appBarDv.dart';
 import 'package:dvmastrsn/widgets/bottomNavBar.dart';
@@ -48,6 +49,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 2:
         return VirabotkaPage();
+        break;
+      case 3:
+        return ServicePage();
         break;
       default:
         return Center(child: CircularProgressIndicator());

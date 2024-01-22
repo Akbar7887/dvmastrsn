@@ -42,7 +42,7 @@ class _NaryadPageState extends State<NaryadPage> {
   }
 
   Future<List<dynamic>> _getAll() async {
-    return await _api.getall(Ui.urlzakaz, "");
+    return await _api.getall(Ui.urlzakaz, _controller.tabel.value, _date);
   }
 
   // DateFormat('yyyyMMdd').format(DateTime.now())

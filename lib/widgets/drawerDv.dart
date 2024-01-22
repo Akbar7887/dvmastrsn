@@ -1,8 +1,14 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../controller/Controller.dart';
 import '../ui.dart';
+
+final Controller _conroller = Get.find();
 
 class DrawerDv extends StatelessWidget {
   const DrawerDv({Key? key}) : super(key: key);
@@ -79,7 +85,10 @@ class DrawerDv extends StatelessWidget {
                           fontFamily: Ui.fontMontserrat),
                     )),
 
-                onTap: () {},
+                onTap: () {
+                  _conroller.changePage(1);
+                  Navigator.pop(context);
+                },
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
@@ -98,7 +107,10 @@ class DrawerDv extends StatelessWidget {
                           fontFamily: Ui.fontMontserrat),
                     )),
 
-                onTap: () {},
+                onTap: () {
+                  _conroller.changePage(2);
+                  Navigator.pop(context);
+                },
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
@@ -117,7 +129,12 @@ class DrawerDv extends StatelessWidget {
                           fontFamily: Ui.fontMontserrat),
                     )),
 
-                onTap: () {},
+                onTap: () {
+                  _conroller.changePage(3);
+                  Navigator.pop(context);
+
+                  // Scaffold.of(context).closeDrawer();
+                },
                 // mouseCursor: MouseCursor.defer,
                 // onTap: () {},
               ),
@@ -135,7 +152,9 @@ class DrawerDv extends StatelessWidget {
                           fontSize: 20,
                           fontFamily: Ui.fontMontserrat),
                     )),
-                onTap: () {},
+                onTap: () {
+                  exit(0);
+                },
               ),
               Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),

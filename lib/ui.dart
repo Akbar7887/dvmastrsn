@@ -10,12 +10,13 @@ class Ui {
   static final fontPlaybold = 'PlayBold';
   static final login = 'web';
   static final password = 'oMsVXxAgg3';
-  static final urlzakaz = "dv_test/hs/mobile/zakaz/";
-  static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
   static final backColorFrom = Color.fromARGB(204, 38, 36, 36);
   static final backColorTo0 = Color.fromARGB(255, 148, 148, 148);
   static final backColorTo1 = Color.fromARGB(255, 119, 118, 118);
   static final backColorTo2 = Color.fromARGB(255, 72, 70, 70);
 
   static final url = "http://driversvillage.uz:58880/";
+  static final urlzakaz = "dv_test/hs/mobile/zakaz/";
+  static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
+
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dvmastrsn/controller/Controller.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +85,11 @@ Widget BottomNavBar() {
       ),
     ],
     onTap: (int index) {
-      _conroller.changePage(index + 1);
+      if(index != 3){
+        _conroller.changePage(index + 1);
+      }else{
+        exit(0);
+      }
       currentindex = index;
     },
   );

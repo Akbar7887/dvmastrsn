@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 
 import '../ui.dart';
 
+
 class ApiConnector extends GetConnect {
-  final Controller _controller = Get.put(Controller());
   Map<String, String> header = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -18,13 +18,13 @@ class ApiConnector extends GetConnect {
         'Basic ' + base64Encode(utf8.encode('${Ui.login}:${Ui.password}')),
   };
 
-  Future<List<dynamic>> getall(String url, String date) async {
+  Future<List<dynamic>> getall(String url, String tabel, String? date) async {
     Uri uri = Uri();
 
-    if (date != "") {
-      uri = Uri.parse("${Ui.url}${url}${_controller.tabel.value}/${date}");
+    if (date != null) {
+      uri = Uri.parse("${Ui.url}${url}${tabel}/${date}");
     } else {
-      uri = Uri.parse("${Ui.url}${url}${_controller.tabel.value}");
+      uri = Uri.parse("${Ui.url}${url}${tabel}");
     }
 
     final response = await http.get(uri, headers: header);

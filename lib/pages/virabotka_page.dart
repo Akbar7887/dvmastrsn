@@ -40,19 +40,29 @@ class VirabotkaPage extends StatelessWidget {
               height: 5,
             ),
             Container(
-              child: Text(
-                _controller.fio.value,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: Ui.fontMontserrat,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
+                child: RichText(
+              text: TextSpan(
+                  text: 'Выработка: ',
+                  style: TextStyle(
+                      color: Ui.backColorTo1,
+                      fontFamily: Ui.fontMontserrat,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold),
+                  children: [
+                    TextSpan(
+                        text: _controller.fio.value,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: Ui.fontMontserrat,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold)),
+                  ]),
+            )),
             Divider(),
             Expanded(
                 child: FutureBuilder(
-              future: _apiConnector.getall(Ui.urlvirabotka, ""),
+              future: _apiConnector.getall(
+                  Ui.urlvirabotka, _controller.tabel.value, ""),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
@@ -64,13 +74,11 @@ class VirabotkaPage extends StatelessWidget {
                       json.map((e) => Virabotka.fromJson(e)).toList();
 
                   return DataTable(
-                    border: TableBorder.all(
-                      width: 0.5,
-                    ),
+                    border: TableBorder.all(width: 0.5, color: Colors.white),
                     headingRowHeight: 20,
                     headingRowColor:
                         MaterialStateProperty.all(Colors.blueAccent),
-                    columnSpacing: 10,
+                    columnSpacing: 15,
                     headingTextStyle:
                         TextStyle(fontFamily: Ui.fontPlay, color: Colors.black),
                     columns: [
@@ -80,7 +88,9 @@ class VirabotkaPage extends StatelessWidget {
                               // width: 20,
                               child: Text(
                                 "Месяц",
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontFamily: Ui.fontMontserrat),
                               ))),
                       DataColumn(
                           label: Container(
@@ -88,7 +98,9 @@ class VirabotkaPage extends StatelessWidget {
                               // width: 20,
                               child: Text(
                                 "Выручка",
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontFamily: Ui.fontMontserrat),
                               ))),
                       DataColumn(
                           label: Container(
@@ -96,7 +108,10 @@ class VirabotkaPage extends StatelessWidget {
                               // width: 20,
                               child: Text(
                                 "Проц.",
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontFamily: Ui.fontMontserrat,
+                                ),
                               ))),
                       DataColumn(
                           label: Container(
@@ -104,7 +119,9 @@ class VirabotkaPage extends StatelessWidget {
                               // width: 20,
                               child: Text(
                                 "Выработка",
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontFamily: Ui.fontMontserrat),
                               ))),
                       DataColumn(
                           label: Container(
@@ -112,7 +129,10 @@ class VirabotkaPage extends StatelessWidget {
                               // width: 20,
                               child: Text(
                                 "Получил",
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontFamily: Ui.fontMontserrat,
+                                ),
                               ))),
                     ],
                     rows: _listVirabotka.map((e) {
@@ -120,28 +140,46 @@ class VirabotkaPage extends StatelessWidget {
                         DataCell(
                           Text(
                             e.date!,
-                            style: TextStyle(color: Colors.white, fontSize: 10),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: Ui.fontMontserrat,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         DataCell(
                           Text(
                             e.revenue!,
-                            style: TextStyle(color: Colors.white, fontSize: 10),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: Ui.fontMontserrat,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         DataCell(
                           Text(
-                            e.procent!,
-                            style: TextStyle(color: Colors.white, fontSize: 10),
+                            '${e.procent!} %',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontFamily: Ui.fontMontserrat,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         DataCell(
                           Text(
                             e.fakt!,
-                            style: TextStyle(color: Colors.white, fontSize: 10),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: Ui.fontMontserrat,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         DataCell(Checkbox(
+                          fillColor: MaterialStateProperty.all(Ui.backColorFrom),
+                          checkColor: Colors.white,
                           value: e.received,
                           onChanged: (bool? value) {},
                         )),
