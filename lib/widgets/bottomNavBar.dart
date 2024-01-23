@@ -8,7 +8,6 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../ui.dart';
 
-
 Widget BottomNavBar() {
   final Controller _conroller = Get.find();
 
@@ -85,9 +84,9 @@ Widget BottomNavBar() {
       ),
     ],
     onTap: (int index) {
-      if(index != 3){
+      if (index != 3) {
         _conroller.changePage(index + 1);
-      }else{
+      } else {
         exit(0);
       }
       _conroller.changePage(index);
