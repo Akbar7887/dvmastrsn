@@ -9,7 +9,7 @@ class Controller extends GetxController {
   final api = ApiConnector();
   var listNaryad = <Naryad>[].obs;
   var listVirabotka = <Virabotka>[].obs;
-  var page = 1.obs;
+  var page = 0.obs;
   var fio = "".obs;
   var tabel = "".obs;
 
@@ -35,7 +35,7 @@ class Controller extends GetxController {
 
   changePage(int page) {
     this.page.value = page;
-    update();
+    // update();
   }
 }
 

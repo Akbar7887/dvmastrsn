@@ -8,10 +8,10 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../ui.dart';
 
-int currentindex = 0;
-final Controller _conroller = Get.find();
 
 Widget BottomNavBar() {
+  final Controller _conroller = Get.find();
+
   return ConvexAppBar(
     height: 70,
     gradient: LinearGradient(
@@ -26,7 +26,7 @@ Widget BottomNavBar() {
       // Gradient from https://learnui.design/tools/gradient-generator.html
       tileMode: TileMode.mirror,
     ),
-    initialActiveIndex: currentindex,
+    initialActiveIndex: _conroller.page.value,
     // color: Colors.white,
     backgroundColor: Ui.backColorFrom,
     activeColor: Ui.backColorFrom,
@@ -90,7 +90,7 @@ Widget BottomNavBar() {
       }else{
         exit(0);
       }
-      currentindex = index;
+      _conroller.changePage(index);
     },
   );
 }

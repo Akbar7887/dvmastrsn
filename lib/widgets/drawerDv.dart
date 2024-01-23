@@ -15,8 +15,8 @@ class DrawerDv extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Container(
+    return  Drawer(
+      child:  Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -86,7 +86,7 @@ class DrawerDv extends StatelessWidget {
                     )),
 
                 onTap: () {
-                  _conroller.changePage(1);
+                  _conroller.changePage(0);
                   Navigator.pop(context);
                 },
                 // mouseCursor: MouseCursor.defer,
@@ -108,7 +108,7 @@ class DrawerDv extends StatelessWidget {
                     )),
 
                 onTap: () {
-                  _conroller.changePage(2);
+                  _conroller.changePage(1);
                   Navigator.pop(context);
                 },
                 // mouseCursor: MouseCursor.defer,
@@ -130,7 +130,7 @@ class DrawerDv extends StatelessWidget {
                     )),
 
                 onTap: () {
-                  _conroller.changePage(3);
+                  _conroller.changePage(2);
                   Navigator.pop(context);
 
                   // Scaffold.of(context).closeDrawer();

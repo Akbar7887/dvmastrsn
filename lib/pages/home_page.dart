@@ -44,13 +44,13 @@ class _HomePageState extends State<HomePage> {
 
   selectPage() {
     switch (_controller.page.value) {
-      case 1:
+      case 0:
         return NaryadPage();
         break;
-      case 2:
+      case 1:
         return VirabotkaPage();
         break;
-      case 3:
+      case 2:
         return ServicePage();
         break;
       default:
