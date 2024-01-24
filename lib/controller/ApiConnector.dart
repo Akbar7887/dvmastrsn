@@ -31,11 +31,12 @@ class ApiConnector extends GetConnect {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
-     return throw Exception("Error");
+      return throw Exception("Error");
     }
   }
 
-  Future<List<dynamic>> getallByName(String url, String name, String page) async {
+  Future<List<dynamic>> getallByName(
+      String url, String name, String page) async {
     Uri uri = Uri.parse("${Ui.url}${url}${name}/$page");
 
     final response = await http.get(uri, headers: header);
