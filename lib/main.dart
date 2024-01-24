@@ -7,7 +7,6 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'controller/Controller.dart';
 
 void main() {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(const MyApp());
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
         // backgroundColor: Ui.backColorFrom,
         // bottomAppBarColor: Ui.backColorTo0,
         textTheme: TextTheme(),
-        // fontFamily: Ui.fontPlay,
+        fontFamily: Ui.fontMontserrat,
         // textTheme: TextTheme(bodyText1: ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         //primarySwatch: Colors.black87,

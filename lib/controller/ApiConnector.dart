@@ -31,7 +31,7 @@ class ApiConnector extends GetConnect {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
-      throw Exception("Error");
+     return throw Exception("Error");
     }
   }
 

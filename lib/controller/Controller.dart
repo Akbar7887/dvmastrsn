@@ -10,20 +10,22 @@ class Controller extends GetxController {
   final api = ApiConnector();
   var listNaryad = <Naryad>[].obs;
   var listVirabotka = <Virabotka>[].obs;
-  var listAutoService = <AutoService>[].obs;
+  // var listAutoService = <AutoService>[].obs;
   var page = 0.obs;
   var fio = "".obs;
   var tabel = "".obs;
-  var pageService = 0.obs;
+  // var pageService = 0.obs;
 
   @override
   onInit() {
+    super.onInit();
+
+    this.page.value = 0;
     this.tabel.value = "DVБП-00175";
     // fetchListNyad("DVБП-00183");
     this.page.value = 2;
     this.fio.value = "Toshmat EFGREG ergvREGV";
-    super.onInit();
-    fetchListAutoService("0");
+    // fetchListAutoService("0");
 
   }
 
@@ -38,20 +40,28 @@ class Controller extends GetxController {
     this.listVirabotka.value = json.map((e) => Virabotka.fromJson(e)).toList();
   }
 
-  fetchListAutoService(String page) async {
-    var json = await api.getallByName(Ui.urlservice, "&&&", page);
-    List<AutoService> _list = json.map((e) => AutoService.fromJson(e)).toList();
-    this.listAutoService.value.addAll(_list);
-    update();
-  }
-
-  incrementPageService() {
-    this.pageService.value +=1;
-  }
+  // fetchListAutoService(String page) async {
+  //   var json = await api.getallByName(Ui.urlservice, "&&&", page);
+  //   List<AutoService> _list = json.map((e) => AutoService.fromJson(e)).toList();
+  //   for (int i = 0; i < _list.length; i++) {
+  //     bool exist = this.listAutoService.value
+  //         .where((element) =>
+  //             element.rownumber != _list[i].rownumber)
+  //         .isEmpty;
+  //     if(!exist || this.listAutoService.value.length == 0){
+  //       this.listAutoService.value.add(_list[i]);
+  //     }
+  //   }
+  //   // update();
+  // }
+  //
+  // incrementPageService() {
+  //   this.pageService.value += 1;
+  // }
 
   changePage(int page) {
     this.page.value = page;
-    // update();
+     update();
   }
 }
 
