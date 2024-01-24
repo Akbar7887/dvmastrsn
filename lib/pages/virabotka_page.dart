@@ -77,28 +77,29 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
             )),
             Divider(),
             Container(
-                height: 50 +
-                    (_listVirabotka.length == 0
-                        ? 1
-                        : _listVirabotka.length * 35),
                 child: FutureBuilder(
-                  future: _apiConnector.getall(
-                      Ui.urlvirabotka, _controller.tabel.value, ""),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      var json = snapshot.data!;
-                      _listVirabotka =
-                          json.map((e) => Virabotka.fromJson(e)).toList();
-                      _listSelected = List.generate(
-                          _listVirabotka.length, (index) => false);
-                      if (_listVirabotka.isNotEmpty && _date.isEmpty) {
-                        _date = _listVirabotka.first.datef!;
-                      }
-                      return SingleChildScrollView(
+              future: _apiConnector.getall(
+                  Ui.urlvirabotka, _controller.tabel.value, ""),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  var json = snapshot.data!;
+                  _listVirabotka =
+                      json.map((e) => Virabotka.fromJson(e)).toList();
+                  _listSelected =
+                      List.generate(_listVirabotka.length, (index) => false);
+                  if (_listVirabotka.isNotEmpty && _date.isEmpty) {
+                    _date = _listVirabotka.first.datef!;
+                  }
+                  return Container(
+                      height: 50 +
+                          (_listVirabotka.length == 0
+                              ? 1
+                              : _listVirabotka.length * 35),
+                      child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -254,10 +255,10 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                                         )),
                                       ]);
                                 }).toList(),
-                              )));
-                    }
-                  },
-                )),
+                              ))));
+                }
+              },
+            )),
             Divider(),
             Container(
               child: Text(

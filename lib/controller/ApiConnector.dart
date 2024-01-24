@@ -35,8 +35,8 @@ class ApiConnector extends GetConnect {
     }
   }
 
-  Future<List<dynamic>> getallByName(String url, String name) async {
-    Uri uri = Uri.parse("${Ui.url}${url}${name}");
+  Future<List<dynamic>> getallByName(String url, String name, int page) async {
+    Uri uri = Uri.parse("${Ui.url}${url}${name}/$page");
 
     final response = await http.get(uri, headers: header);
 
