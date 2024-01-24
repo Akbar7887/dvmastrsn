@@ -27,10 +27,8 @@ class _NaryadPageState extends State<NaryadPage> {
     super.initState();
     _rows = [];
     _listNaryad = [];
-    var yaer = DateTime.now().year;
-    var month = DateTime.now().month;
-    _date = DateFormat('yyyyMMdd').format(DateTime(yaer, month, 1));
-    _datapicker = DateFormat('dd MMMM yyyy').format(DateTime(yaer, month, 1));
+    _date = DateFormat('yyyyMMdd').format(DateTime.now());
+    _datapicker = DateFormat('dd MMMM yyyy').format(DateTime.now());
   }
 
   Future ShowDatePicker() async {
