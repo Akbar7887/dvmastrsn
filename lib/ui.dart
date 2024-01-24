@@ -18,5 +18,7 @@ class Ui {
   static final url = "http://driversvillage.uz:58880/";
   static final urlzakaz = "dv_test/hs/mobile/zakaz/";
   static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
+  static final urlservice = "dv_test/hs/mobile/service/";
+
 
 }

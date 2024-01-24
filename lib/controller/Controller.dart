@@ -17,7 +17,7 @@ class Controller extends GetxController {
   onInit() {
     this.tabel.value = "DVБП-00175";
     // fetchListNyad("DVБП-00183");
-    this.page.value = 1;
+    this.page.value = 2;
     this.fio.value = "Toshmat EFGREG ergvREGV";
     super.onInit();
   }

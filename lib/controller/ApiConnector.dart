@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 
 import '../ui.dart';
 
-
 class ApiConnector extends GetConnect {
   Map<String, String> header = {
     'Content-Type': 'application/json',
@@ -26,6 +25,18 @@ class ApiConnector extends GetConnect {
     } else {
       uri = Uri.parse("${Ui.url}${url}${tabel}");
     }
+
+    final response = await http.get(uri, headers: header);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(utf8.decode(response.bodyBytes));
+    } else {
+      throw Exception("Error");
+    }
+  }
+
+  Future<List<dynamic>> getallByName(String url, String name) async {
+    Uri uri = Uri.parse("${Ui.url}${url}${name}");
 
     final response = await http.get(uri, headers: header);
 
