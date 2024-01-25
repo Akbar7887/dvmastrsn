@@ -10,10 +10,10 @@ class Ui {
   static final fontPlaybold = 'PlayBold';
   static final login = 'web';
   static final password = 'oMsVXxAgg3';
-  static final backColorFrom = Color.fromARGB(255, 63, 81, 252);
+  static final backColorFrom = Color.fromARGB(255, 37, 55, 250);
   static final backColorTo0 = Color.fromARGB(255, 180, 186, 248);
   static final backColorTo1 = Color.fromARGB(255, 126, 138, 248);
-  static final backColorTo2 = Color.fromARGB(255, 93, 108, 252);
+  static final backColorTo2 = Color.fromARGB(255, 76, 92, 250);
 
 
   // static final backColorFrom = Color.fromARGB(204, 38, 36, 36);

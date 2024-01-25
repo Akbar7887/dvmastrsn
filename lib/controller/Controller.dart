@@ -53,9 +53,10 @@ class Controller extends GetxController {
     update();
   }
 
-  enterlogin(String tabel, String pass) async {
+ Future<Login> enterlogin(String tabel, String pass) async {
     final json = await api.getLogin(Ui.urllogin, tabel, pass);
-    this.login.value = Login.fromJson(json);
+
+    return Login.fromJson(json);
   }
 
   selectPage() {

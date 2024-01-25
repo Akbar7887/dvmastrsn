@@ -42,7 +42,8 @@ class _NaryadPageState extends State<NaryadPage> {
   }
 
   Future<List<dynamic>> _getAll() async {
-    return await _api.getall(Ui.urlzakaz, _controller.login.value.tabel!, _date);
+    return await _api.getall(
+        Ui.urlzakaz, _controller.login.value.tabel!, _date);
   }
 
   // DateFormat('yyyyMMdd').format(DateTime.now())
@@ -81,7 +82,7 @@ class _NaryadPageState extends State<NaryadPage> {
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(color: Ui.backColorTo1,),
                 );
               } else {
                 var json = snapshot.data!;

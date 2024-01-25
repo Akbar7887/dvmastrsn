@@ -6,48 +6,82 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
-final defaultPinTheme = PinTheme(
-  width: 40,
-  height: 60,
-  textStyle: TextStyle(
-      fontSize: 25,
-      color: Color.fromRGBO(30, 60, 87, 1),
-      fontWeight: FontWeight.w600),
-  decoration: BoxDecoration(
-    border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
-    borderRadius: BorderRadius.circular(10),
-  ),
-);
-
-final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-  border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-  borderRadius: BorderRadius.circular(8),
-);
-
-final submittedPinTheme = defaultPinTheme.copyWith(
-  decoration: defaultPinTheme.decoration!.copyWith(
-    color: Color.fromRGBO(234, 239, 243, 1),
-  ),
-);
-TextEditingController _login = TextEditingController();
-TextEditingController _password = TextEditingController();
-final Controller _controller = Get.put(Controller());
-
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  TextEditingController _login = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  final Controller _controller = Get.put(Controller());
+  late final PinTheme defaultPinTheme;
+  late final PinTheme focusedPinTheme;
+  late final PinTheme submittedPinTheme;
+  bool showProgres = false;
+
+  @override
+  void initState() {
+    super.initState();
+    defaultPinTheme = PinTheme(
+      width: 40,
+      height: 50,
+      textStyle: TextStyle(
+          fontSize: 25,
+          color: Color.fromRGBO(30, 60, 87, 1),
+          fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
+
+    focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+      borderRadius: BorderRadius.circular(8),
+    );
+
+    submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration!.copyWith(
+        color: Color.fromRGBO(234, 239, 243, 1),
+      ),
+    );
+  }
+
+  void _enterAction(BuildContext context) {
+    _controller.enterlogin(_login.text, _password.text).then((value) {
+      _controller.login.value = value;
+      if (_controller.login.value.tabel!.isNotEmpty) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      }
+    }).onError((error, stackTrace) {
+      setState(() {
+        showProgres = false;
+      });
+      const snackBar = SnackBar(
+        content: Text(
+          'Логин или пароль не верно !',
+          style: TextStyle(color: Colors.white),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     /// Create FocusNode
     final pinputFocusNode = FocusNode();
-
-    /// Focus pinput
     pinputFocusNode.requestFocus();
-
-    /// UnFocus pinput
     pinputFocusNode.unfocus();
-    return SafeArea(
-        child: Material(
+
+    return Scaffold(
+      backgroundColor: Ui.backColorFrom,
+        body: SafeArea(
+            child: Material(
       textStyle: TextStyle(fontFamily: Ui.fontMontserrat, color: Colors.white),
       child: Container(
           decoration: BoxDecoration(
@@ -64,10 +98,9 @@ class AuthPage extends StatelessWidget {
               tileMode: TileMode.mirror,
             ),
           ),
-          padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height / 17),
-          child: Column(
+                  child: Column(
             children: [
+              SizedBox(height: 20,),
               Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(left: 20, right: 20),
@@ -82,7 +115,7 @@ class AuthPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
+                height: 20,
               ),
               Container(
                 padding: EdgeInsets.only(left: 10),
@@ -150,8 +183,6 @@ class AuthPage extends StatelessWidget {
                 height: 80,
                 width: 200,
                 padding: EdgeInsets.only(top: 30),
-                // decoration:
-                //     BoxDecoration(borderRadius: BorderRadius.circular(10)),
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Ui.backColorFrom,
@@ -165,18 +196,21 @@ class AuthPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         )),
                     onPressed: () {
-                      _controller.enterlogin(_login.text, _password.text);
-                      if (_controller.login.value.tabel!.isNotEmpty) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      }
+                      setState(() {
+                        showProgres = true;
+                      });
+                      _enterAction(context);
                     },
-                    child: Container(child: Text("Войти"))),
+                    child: showProgres == true
+                        ? Center(
+                            child: CircularProgressIndicator(
+                              color: Ui.backColorTo0,
+                            ),
+                          )
+                        : Container(child: Text("Войти"))),
               )
             ],
           )),
-    ));
+    )));
   }
 }
