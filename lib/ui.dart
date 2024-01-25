@@ -10,10 +10,10 @@ class Ui {
   static final fontPlaybold = 'PlayBold';
   static final login = 'web';
   static final password = 'oMsVXxAgg3';
-  static final backColorFrom = Color.fromARGB(204, 26, 26, 98);
-  static final backColorTo0 = Color.fromARGB(204, 98, 98, 147);
-  static final backColorTo1 = Color.fromARGB(204, 48, 48, 103);
-  static final backColorTo2 = Color.fromARGB(204, 33, 33, 93);
+  static final backColorFrom = Color.fromARGB(255, 63, 81, 252);
+  static final backColorTo0 = Color.fromARGB(255, 180, 186, 248);
+  static final backColorTo1 = Color.fromARGB(255, 126, 138, 248);
+  static final backColorTo2 = Color.fromARGB(255, 93, 108, 252);
 
 
   // static final backColorFrom = Color.fromARGB(204, 38, 36, 36);
@@ -25,6 +25,7 @@ class Ui {
   static final urlzakaz = "dv_test/hs/mobile/zakaz/";
   static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
   static final urlservice = "dv_test/hs/mobile/service/";
+  static final urllogin = "dv_test/hs/mobile/auth/";
 
 
 }

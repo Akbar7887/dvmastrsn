@@ -47,4 +47,16 @@ class ApiConnector extends GetConnect {
       throw Exception("Error");
     }
   }
+  Future<dynamic> getLogin(
+      String url, String tabel, String pass) async {
+    Uri uri = Uri.parse("${Ui.url}${url}${tabel}/$pass");
+
+    final response = await http.get(uri, headers: header);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(utf8.decode(response.bodyBytes));
+    } else {
+      throw Exception("Error");
+    }
+  }
 }

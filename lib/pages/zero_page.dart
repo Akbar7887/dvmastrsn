@@ -1,3 +1,4 @@
+import 'package:dvmastrsn/pages/auth_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -55,6 +56,6 @@ class _ZeroPageState extends State<ZeroPage> {
     await initServices();
 
     return await Future.delayed(Duration(seconds: 2), () async {})
-        .then((value) => HomePage());
+        .then((value) => AuthPage());
   }
 }

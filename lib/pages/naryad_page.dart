@@ -27,7 +27,9 @@ class _NaryadPageState extends State<NaryadPage> {
     super.initState();
     _rows = [];
     _listNaryad = [];
-    _date = DateFormat('yyyyMMdd').format(DateTime.now());
+    var _year = DateTime.now().year;
+    var _moth = DateTime.now().month;
+    _date = DateFormat('yyyyMMdd').format(DateTime(_year, _moth, 01));
     _datapicker = DateFormat('dd MMMM yyyy').format(DateTime.now());
   }
 
@@ -40,7 +42,7 @@ class _NaryadPageState extends State<NaryadPage> {
   }
 
   Future<List<dynamic>> _getAll() async {
-    return await _api.getall(Ui.urlzakaz, _controller.tabel.value, _date);
+    return await _api.getall(Ui.urlzakaz, _controller.login.value.tabel!, _date);
   }
 
   // DateFormat('yyyyMMdd').format(DateTime.now())

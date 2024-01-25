@@ -37,24 +37,10 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Ui.backColorFrom,
       appBar: AppBarDv(),
       drawer: DrawerDv(),
-      body: Obx(() => selectPage()),
+      body: Obx(() => _controller.selectPage()),
       bottomNavigationBar: BottomNavBar(),
     );
   }
 
-  selectPage() {
-    switch (_controller.page.value) {
-      case 0:
-        return NaryadPage();
-        break;
-      case 1:
-        return VirabotkaPage();
-        break;
-      case 2:
-        return ServicePage();
-        break;
-      default:
-        return Center(child: CircularProgressIndicator());
-    }
-  }
+
 }

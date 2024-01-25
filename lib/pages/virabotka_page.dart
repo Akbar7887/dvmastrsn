@@ -79,7 +79,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
             Container(
                 child: FutureBuilder(
               future: _apiConnector.getall(
-                  Ui.urlvirabotka, _controller.tabel.value, ""),
+                  Ui.urlvirabotka, _controller.login.value.tabel!, ""),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
@@ -271,7 +271,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                 child: FutureBuilder(
               future: _apiConnector.getall(
                   "dv_test/hs/mobile/virabotkapodnyam/",
-                  _controller.tabel.value,
+                  _controller.login.value.tabel!,
                   _date),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
