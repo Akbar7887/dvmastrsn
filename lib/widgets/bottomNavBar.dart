@@ -27,12 +27,15 @@ Widget BottomNavBar() {
     ),
     initialActiveIndex: _conroller.page.value,
     // color: Colors.white,
-    backgroundColor: Ui.backColorFrom,
-    activeColor: Ui.backColorFrom,
+    backgroundColor: Ui.backColorTo1,
+    color: Colors.white,
+    activeColor: Ui.backColorTo1,
     curveSize: 20,
+
     // cornerRadius: 1,
     items: [
       TabItem(
+
         icon: Icon(
           Icons.car_repair,
           color: Colors.white,

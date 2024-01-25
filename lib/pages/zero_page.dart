@@ -26,8 +26,21 @@ class _ZeroPageState extends State<ZeroPage> {
             return snapshot.data as Widget;
           } else {
             return Scaffold(
-              backgroundColor: Colors.indigo,
+              // backgroundColor: Colors.indigo,
               body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment(0.8, 1),
+                      colors: <Color>[
+                        Ui.backColorFrom,
+                        Ui.backColorTo2,
+                        Ui.backColorTo1,
+                        Ui.backColorTo0,
+                      ],
+                      // Gradient from https://learnui.design/tools/gradient-generator.html
+                      tileMode: TileMode.mirror,
+                    )),
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Text(
