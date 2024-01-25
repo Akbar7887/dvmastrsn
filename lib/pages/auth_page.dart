@@ -1,7 +1,9 @@
 import 'package:dvmastrsn/controller/Controller.dart';
+import 'package:dvmastrsn/pages/home_page.dart';
 import 'package:dvmastrsn/ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 final defaultPinTheme = PinTheme(
@@ -29,7 +31,7 @@ final submittedPinTheme = defaultPinTheme.copyWith(
 );
 TextEditingController _login = TextEditingController();
 TextEditingController _password = TextEditingController();
-final Controller _controller = Controller();
+final Controller _controller = Get.put(Controller());
 
 class AuthPage extends StatelessWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -63,7 +65,7 @@ class AuthPage extends StatelessWidget {
             ),
           ),
           padding:
-              EdgeInsets.only(top: MediaQuery.of(context).size.height / 15),
+              EdgeInsets.only(top: MediaQuery.of(context).size.height / 17),
           child: Column(
             children: [
               Container(
@@ -80,7 +82,7 @@ class AuthPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 12,
+                height: MediaQuery.of(context).size.height / 20,
               ),
               Container(
                 padding: EdgeInsets.only(left: 10),
@@ -110,9 +112,9 @@ class AuthPage extends StatelessWidget {
                     defaultPinTheme: defaultPinTheme,
                     focusedPinTheme: focusedPinTheme,
                     submittedPinTheme: submittedPinTheme,
-                    validator: (s) {
-                      return s == '22222' ? null : 'Pin is incorrect';
-                    },
+                    // validator: (s) {
+                    //   return s == '22222' ? null : 'Pin is incorrect';
+                    // },
                     pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
                     showCursor: true,
                     onCompleted: (pin) => print(pin),
@@ -137,9 +139,9 @@ class AuthPage extends StatelessWidget {
                     defaultPinTheme: defaultPinTheme,
                     focusedPinTheme: focusedPinTheme,
                     submittedPinTheme: submittedPinTheme,
-                    validator: (s) {
-                      return s == '22222' ? null : 'Pin is incorrect';
-                    },
+                    // validator: (s) {
+                    //   return s == '22222' ? null : 'Pin is incorrect';
+                    // },
                     pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
                     showCursor: true,
                     onCompleted: (pin) => print(pin),
@@ -164,8 +166,11 @@ class AuthPage extends StatelessWidget {
                         )),
                     onPressed: () {
                       _controller.enterlogin(_login.text, _password.text);
-                      if(_controller.login.value.tabel!.isNotEmpty){
-                        _controller.changePage(0);
+                      if (_controller.login.value.tabel!.isNotEmpty) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
                       }
                     },
                     child: Container(child: Text("Войти"))),
