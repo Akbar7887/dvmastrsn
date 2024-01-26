@@ -81,9 +81,9 @@ class _NaryadPageState extends State<NaryadPage> {
             future: _getAll(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return Center(
+                return Expanded(child: Center(
                   child: CircularProgressIndicator(color: Ui.backColorTo1,),
-                );
+                ));
               } else {
                 var json = snapshot.data!;
                 _listNaryad = json.map((e) => Naryad.fromJson(e)).toList();

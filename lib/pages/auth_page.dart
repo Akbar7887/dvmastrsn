@@ -52,6 +52,8 @@ class _AuthPageState extends State<AuthPage> {
 
   void _enterAction(BuildContext context) {
     _controller.enterlogin(_login.text, _password.text).then((value) {
+      showProgres = false;
+
       _controller.login.value = value;
       if (_controller.login.value.tabel!.isNotEmpty) {
         Navigator.push(
