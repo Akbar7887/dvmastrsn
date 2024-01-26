@@ -51,21 +51,27 @@ class _ServicePageState extends State<ServicePage> {
     if (_textSeach.text.isNotEmpty) {
       _sendText = _textSeach.text;
     }
-    var json = await _apiConnector.getallByName(
-        Ui.urlservice, _sendText, _page.toString());
-    List<AutoService> _list = json.map((e) => AutoService.fromJson(e)).toList();
-    for (int i = 0; i < _list.length; i++) {
-      bool exist = _listAutoService
-          .where((element) => element.rownumber == _list[i].rownumber)
-          .isEmpty;
-      if (exist || _listAutoService.length == 0) {
-        _listAutoService.add(_list[i]);
+    await _apiConnector
+        .getallByName(Ui.urlservice, _sendText, _page.toString())
+        .then((json) {
+      List<AutoService> _list =
+          json.map((e) => AutoService.fromJson(e)).toList();
+      for (int i = 0; i < _list.length; i++) {
+        bool exist = _listAutoService
+            .where((element) => element.rownumber == _list[i].rownumber)
+            .isEmpty;
+        if (exist || _listAutoService.length == 0) {
+          _listAutoService.add(_list[i]);
+        }
       }
-    }
 
-    if (_listShow.length != _listAutoService.length) {
-      _listShow = List.generate(_listAutoService.length, (index) => false);
-    }
+      if (_listShow.length != _listAutoService.length) {
+        _listShow = List.generate(_listAutoService.length, (index) => false);
+      }
+    }).onError((error, stackTrace) {
+      getAll();
+    });
+
     return _listAutoService;
   }
 
@@ -112,12 +118,7 @@ class _ServicePageState extends State<ServicePage> {
             child: FutureBuilder(
                 future: getAll(),
                 builder: (cotext, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    _listAutoService = snapshot.data!;
+                  if (snapshot.hasData) {
                     return ListView.builder(
                         controller: _scrollController,
                         itemCount: _listAutoService.length,
@@ -244,8 +245,12 @@ class _ServicePageState extends State<ServicePage> {
                             ],
                           ));
                         });
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   }
-                }))
+                })),
       ],
     );
   }

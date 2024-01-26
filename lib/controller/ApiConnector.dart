@@ -9,10 +9,10 @@ import '../ui.dart';
 class ApiConnector extends GetConnect {
   Map<String, String> header = {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
+    // 'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Credentials': 'true',
+    // 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    // 'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept',
     'authorization':
         'Basic ' + base64Encode(utf8.encode('${Ui.login}:${Ui.password}')),
   };
