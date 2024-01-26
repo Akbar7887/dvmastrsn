@@ -1,8 +1,11 @@
+import 'package:dvmastrsn/controller/Controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../ui.dart';
 
+final Controller _controller = Get.put(Controller());
 class AppBarDv extends StatelessWidget implements PreferredSizeWidget{
   const AppBarDv({Key? key}) : super(key: key);
 
@@ -15,14 +18,27 @@ class AppBarDv extends StatelessWidget implements PreferredSizeWidget{
     return  AppBar(
             backgroundColor: Colors.white,
             elevation: 1,
-            title: Text(
-              Ui.companyName,
-              style: TextStyle(
-                  fontFamily: Ui.fontMontserrat,
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
-            ),
+            title: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+              Text(
+                Ui.companyName,
+                style: TextStyle(
+                    fontFamily: Ui.fontMontserrat,
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 5,),
+              Text(
+                _controller.login.value.name!,
+                style: TextStyle(
+                    fontFamily: Ui.fontMontserrat,
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold),
+              )
+            ],),
             leading: IconButton(
               onPressed: () {
                 Scaffold.of(context).openDrawer();

@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:dvmastrsn/controller/ApiConnector.dart';
 import 'package:dvmastrsn/controller/Controller.dart';
 import 'package:dvmastrsn/models/PoDnyam.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../models/Virabotka.dart';
 import '../ui.dart';
@@ -22,13 +25,16 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
   List<PoDnyam> _listPoDnyam = [];
   late String _date;
   late List<bool> _listSelected;
+  final format = DateFormat('YYYYmmdd');
+
 
   @override
   void initState() {
     super.initState();
     _listVirabotka = [];
     _listSelected = [];
-    _date = '';
+    DateTime.now();
+    _date = DateFormat('yyyyMMdd').format(DateTime.now());
   }
 
   @override
@@ -52,28 +58,22 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
           ),
         ),
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 15,
             ),
             Container(
+                // alignment: Alignment.center,
                 child: RichText(
               text: TextSpan(
-                  text: 'Выработка: ',
+                  text: 'Выработка',
                   style: TextStyle(
-                      color: Ui.backColorTo1,
+                      color: Colors.white,
                       fontFamily: Ui.fontMontserrat,
-                      fontSize: 12,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold),
-                  children: [
-                    TextSpan(
-                        text: _controller.fio.value,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: Ui.fontMontserrat,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold)),
-                  ]),
+                  children: []),
             )),
             Divider(),
             Container(
@@ -270,7 +270,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
             Expanded(
                 child: FutureBuilder(
               future: _apiConnector.getall(
-                  "dv_test/hs/mobile/virabotkapodnyam/",
+                  Ui.urlvirabotkapodnyam,
                   _controller.login.value.tabel!,
                   _date),
               builder: (context, snapshot) {
@@ -281,45 +281,63 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                 } else {
                   var json = snapshot.data!;
                   _listPoDnyam = json.map((e) => PoDnyam.fromJson(e)).toList();
-                  return SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: DataTable(
-                              sortColumnIndex: 0,
-                              dataRowHeight: 30,
-                              headingTextStyle: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: Ui.fontMontserrat),
-                              headingRowHeight: 30,
-                              columns: [
-                                DataColumn(label: Text("День")),
-                                DataColumn(label: Text("Выручка"))
-                              ],
-                              rows: _listPoDnyam.map((e) {
-                                return DataRow(cells: [
-                                  DataCell(
-                                    Text(
-                                      e.date!,
-                                      style: TextStyle(
+                  double s = 0.0;
+                  _listPoDnyam.forEach((element) {
+                    s = s + double.parse(element.dept!);
+                  });
+                  return Column(
+                    children: [
+                      Container(
+                        child: Text(
+                          'Итого за месяц: ${s.toString()}',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: Ui.fontMontserrat,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Expanded(
+                          child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: DataTable(
+                                      sortColumnIndex: 0,
+                                      dataRowHeight: 30,
+                                      headingTextStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 12,
-                                          fontFamily: Ui.fontMontserrat,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  DataCell(
-                                    Text(
-                                      e.dept!,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 12,
-                                          fontFamily: Ui.fontMontserrat,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ]);
-                              }).toList())));
+                                          fontFamily: Ui.fontMontserrat),
+                                      headingRowHeight: 30,
+                                      columns: [
+                                        DataColumn(label: Text("День")),
+                                        DataColumn(label: Text("Выручка"))
+                                      ],
+                                      rows: _listPoDnyam.map((e) {
+                                        return DataRow(cells: [
+                                          DataCell(
+                                            Text(
+                                              e.date!,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontFamily: Ui.fontMontserrat,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              e.dept!,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12,
+                                                  fontFamily: Ui.fontMontserrat,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                        ]);
+                                      }).toList())))),
+                    ],
+                  );
                 }
               },
             ))

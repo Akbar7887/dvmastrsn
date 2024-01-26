@@ -21,11 +21,16 @@ class Ui {
   // static final backColorTo1 = Color.fromARGB(255, 119, 118, 118);
   // static final backColorTo2 = Color.fromARGB(255, 72, 70, 70);
 
+  // static final url = "http://driversvillage.uz:58880/";
+  // static final urlzakaz = "dv_test/hs/mobile/zakaz/";
+  // static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
+  // static final urlservice = "dv_test/hs/mobile/service/";
+  // static final urllogin = "dv_test/hs/mobile/auth/";
+
   static final url = "http://driversvillage.uz:58880/";
-  static final urlzakaz = "dv_test/hs/mobile/zakaz/";
-  static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
-  static final urlservice = "dv_test/hs/mobile/service/";
-  static final urllogin = "dv_test/hs/mobile/auth/";
-
-
+  static final urlzakaz = "dv/hs/mobile/zakaz/";
+  static final urlvirabotka = "dv/hs/mobile/virabotka/";
+  static final urlservice = "dv/hs/mobile/service/";
+  static final urllogin = "dv/hs/mobile/auth/";
+  static final urlvirabotkapodnyam = "dv/hs/mobile/virabotkapodnyam/";
 }

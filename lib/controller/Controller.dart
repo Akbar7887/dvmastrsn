@@ -19,7 +19,7 @@ class Controller extends GetxController {
 
   // var listAutoService = <AutoService>[].obs;
   var page = 0.obs;
-  var fio = "".obs;
+  // var fio = "".obs;
 
   // var tabel = "".obs;
 
@@ -33,7 +33,7 @@ class Controller extends GetxController {
     // this.tabel.value = "DVБП-00175";
     // fetchListNyad("DVБП-00183");
     this.page.value = 0;
-    this.fio.value = "Toshmat EFGREG ergvREGV";
+    // this.fio.value = "Toshmat EFGREG ergvREGV";
     // fetchListAutoService("0");
   }
 
