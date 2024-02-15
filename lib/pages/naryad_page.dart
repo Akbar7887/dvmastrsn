@@ -64,15 +64,6 @@ class _NaryadPageState extends State<NaryadPage> {
                     _date = DateFormat('yyyyMMdd').format(date);
                     _datapicker = DateFormat('dd MMMM yyyy').format(date);
                     _getAll();
-                    // _api
-                    //     .getall(
-                    //         "dv_test/hs/mobile/zakaz/",
-                    //         "DVБП-00175",
-                    //         DateFormat('yyyyMMdd').format(date))
-                    //     .then((value) {
-                    //   this._listNaryad =
-                    //       value.map((e) => Naryad.fromJson(e)).toList();
-                    // });
                   });
                 });
               },
@@ -90,7 +81,7 @@ class _NaryadPageState extends State<NaryadPage> {
               } else {
                 var json = snapshot.data!;
                 _listNaryad = json.map((e) => Naryad.fromJson(e)).toList();
-                if (_rows.isEmpty) {
+                if (_listNaryad.length != _rows.length) {
                   _rows =
                       new List.generate(_listNaryad.length, (index) => false);
                 }
