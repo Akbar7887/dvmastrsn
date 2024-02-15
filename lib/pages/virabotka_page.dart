@@ -26,6 +26,8 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
   late String _date;
   late List<bool> _listSelected;
   final format = DateFormat('YYYYmmdd');
+  bool _nowDate = true;
+  late String _dateG;
 
 
   @override
@@ -33,7 +35,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
     super.initState();
     _listVirabotka = [];
     _listSelected = [];
-    DateTime.now();
+    _dateG = DateFormat('MMMM yyyy').format(DateTime.now());
     _date = DateFormat('yyyyMMdd').format(DateTime.now());
   }
 
@@ -101,9 +103,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                               : _listVirabotka.length * 35),
                       child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
-                          child: SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: DataTable(
+                          child:  DataTable(
                                 sortColumnIndex: 0,
                                 showCheckboxColumn: false,
                                 dataRowHeight: 40,
@@ -198,9 +198,20 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                                       onSelectChanged: (selected) {
                                         setState(() {
                                           if (selected!) {
-                                            _listSelected[_listVirabotka
-                                                .indexOf(e)] = selected;
-                                            _date = e.datef!;
+                                            if(_nowDate){
+                                              _listSelected[_listVirabotka
+                                                  .indexOf(e)] = selected;
+                                              _date = e.datef!;
+                                              _nowDate = false;
+                                              _dateG = e.date!;
+                                            }else{
+                                              _listSelected[_listVirabotka
+                                                  .indexOf(e)] = selected;
+                                              _date = DateFormat('yyyyMMdd').format(DateTime.now());
+                                              _nowDate = true;
+                                              _dateG = DateFormat('MMMM yyyy').format(DateTime.now());
+
+                                            }
                                           }
                                         });
                                       },
@@ -255,7 +266,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                                         )),
                                       ]);
                                 }).toList(),
-                              ))));
+                              )));
                 }
               },
             )),
@@ -289,7 +300,7 @@ class _VirabotkaPageState extends State<VirabotkaPage> {
                     children: [
                       Container(
                         child: Text(
-                          'Итого за месяц: ${s.toString()}',
+                          'Итого ${_dateG}: ${s.toString()}',
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: Ui.fontMontserrat,

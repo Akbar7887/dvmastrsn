@@ -31,6 +31,6 @@ class Ui {
   static final urlzakaz = "dv/hs/mobile/zakaz/";
   static final urlvirabotka = "dv/hs/mobile/virabotka/";
   static final urlservice = "dv/hs/mobile/service/";
-  static final urllogin = "dv/hs/mobile/auth/";
+  static final urllogin = 'dv/hs/mobile/auth/';
   static final urlvirabotkapodnyam = "dv/hs/mobile/virabotkapodnyam/";
 }

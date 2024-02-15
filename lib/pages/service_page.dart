@@ -186,61 +186,68 @@ class _ServicePageState extends State<ServicePage> {
                                                 )))
                                       ]))),
                               _listShow[idx]
-                                  ? Container(
-                                      padding:
-                                          EdgeInsets.only(left: 30, right: 30),
-                                      height: _listAutoService[idx]
-                                              .itemservice!
-                                              .length *
-                                          40,
-                                      child: ListView.builder(
-                                          itemCount: _listAutoService[idx]
-                                              .itemservice!
-                                              .length,
-                                          itemBuilder: (context, index) {
-                                            return Container(
-                                                child: Column(
-                                              children: [
-                                                Container(
-                                                  child: Row(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Expanded(
-                                                          child: Text(
-                                                        _listAutoService[idx]
-                                                            .itemservice![index]
-                                                            .model!,
-                                                        style: TextStyle(
-                                                            fontFamily: Ui
-                                                                .fontMontserrat,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      )),
-                                                      Expanded(
-                                                          child: Text(
-                                                        _listAutoService[idx]
-                                                            .itemservice![index]
-                                                            .price
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            fontFamily: Ui
-                                                                .fontMontserrat,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ))
-                                                    ],
-                                                  ),
-                                                ),
-                                                Divider()
-                                              ],
-                                            ));
-                                          }))
+                                  ? SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 30, right: 30),
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
+                                          child: ListView.builder(
+                                              itemCount: _listAutoService[idx]
+                                                  .itemservice!
+                                                  .length,
+                                              itemBuilder: (context, index) {
+                                                return Container(
+                                                    child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Expanded(
+                                                              child: Text(
+                                                            _listAutoService[
+                                                                    idx]
+                                                                .itemservice![
+                                                                    index]
+                                                                .model!,
+                                                            style: TextStyle(
+                                                                fontFamily: Ui
+                                                                    .fontMontserrat,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          )),
+                                                          Expanded(
+                                                              child: Text(
+                                                            _listAutoService[
+                                                                    idx]
+                                                                .itemservice![
+                                                                    index]
+                                                                .price
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontFamily: Ui
+                                                                    .fontMontserrat,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ))
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Divider()
+                                                  ],
+                                                ));
+                                              })))
                                   : SizedBox()
                             ],
                           ));

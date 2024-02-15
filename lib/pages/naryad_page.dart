@@ -81,8 +81,11 @@ class _NaryadPageState extends State<NaryadPage> {
             future: _getAll(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return Expanded(child: Center(
-                  child: CircularProgressIndicator(color: Ui.backColorTo1,),
+                return Expanded(
+                    child: Center(
+                  child: CircularProgressIndicator(
+                    color: Ui.backColorTo1,
+                  ),
                 ));
               } else {
                 var json = snapshot.data!;
@@ -105,8 +108,8 @@ class _NaryadPageState extends State<NaryadPage> {
                                   margin: EdgeInsets.all(5),
                                   width: MediaQuery.of(context).size.width,
                                   height: !_rows[index]
-                                      ? MediaQuery.of(context).size.height / 4.5
-                                      : 140 +
+                                      ? MediaQuery.of(context).size.height / 4.0
+                                      : 150 +
                                           (_listNaryad[index].items!.length *
                                               55),
                                   padding: EdgeInsets.all(5),
@@ -116,12 +119,19 @@ class _NaryadPageState extends State<NaryadPage> {
                                       gradient: LinearGradient(
                                         begin: Alignment.topLeft,
                                         end: Alignment(0.8, 1),
-                                        colors: <Color>[
-                                          Ui.backColorFrom,
-                                          Ui.backColorTo2,
-                                          Ui.backColorTo1,
-                                          Ui.backColorTo0,
-                                        ],
+                                        colors: _listNaryad[index].uchet!
+                                            ? <Color>[
+                                                Ui.backColorFrom,
+                                                Ui.backColorTo2,
+                                                Ui.backColorTo1,
+                                                Ui.backColorTo0,
+                                              ]
+                                            : <Color>[
+                                                Colors.amber[900]!,
+                                                Colors.amber[700]!,
+                                                Colors.amber[500]!,
+                                                Colors.amber[300]!,
+                                              ],
                                         // Gradient from https://learnui.design/tools/gradient-generator.html
                                         tileMode: TileMode.mirror,
                                       ),
@@ -156,30 +166,66 @@ class _NaryadPageState extends State<NaryadPage> {
                                                       color: Colors.white,
                                                       fontSize: 15),
                                                 ),
-                                              )
+                                              ),
                                             ],
                                           )),
                                           Spacer(),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: 100,
-                                            padding: EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                                color: _listNaryad[index]
-                                                            .status! ==
-                                                        "Закрыт"
-                                                    ? Colors.blueAccent
-                                                    : Ui.backColorTo1,
-                                                // border:
-                                                //     Border.all(color: Colors.white),
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: Text(
-                                              _listNaryad[index].status!,
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
+                                          Column(
+                                            children: [
+                                              Container(
+                                                alignment: Alignment.center,
+                                                width: 100,
+                                                padding: EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                    color: _listNaryad[index]
+                                                                .status! ==
+                                                            "Закрыт"
+                                                        ? Colors.blueAccent
+                                                        : Ui.backColorTo1,
+                                                    border: Border.all(
+                                                        color: Colors.white,
+                                                        width: 0.5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: Text(
+                                                  _listNaryad[index].status!,
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                  textAlign: TextAlign.justify,
+                                                ),
+                                              ),
+                                              !_listNaryad[index].uchet!
+                                                  ? Container(
+                                                      width: 100,
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                      height: 30,
+                                                      decoration: BoxDecoration(
+                                                          border: Border.all(
+                                                              color:
+                                                                  Colors.white,
+                                                              width: 0.5),
+                                                          color: Colors
+                                                                  .red,
+
+                                                          // border:
+                                                          //     Border.all(color: Colors.white),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: Text(
+                                                        ' Без выработки!',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 10),
+                                                      ),
+                                                    )
+                                                  : SizedBox()
+                                            ],
                                           )
                                         ],
                                       )),

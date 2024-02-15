@@ -9,8 +9,9 @@ class Naryad {
     String? nomer;
     String? status;
     String? amount;
+    bool? uchet;
 
-    Naryad({this.auto, this.date, this.items, this.nomer, this.status, this.amount});
+    Naryad({this.auto, this.date, this.items, this.nomer, this.status, this.amount, this.uchet});
 
     factory Naryad.fromJson(Map<String, dynamic> json) {
         return Naryad(
@@ -19,7 +20,8 @@ class Naryad {
             items: json['items'] != null ? (json['items'] as List).map((i) => Item.fromJson(i)).toList() : null, 
             nomer: json['nomer'], 
             status: json['status'],
-            amount: json['amount']
+            amount: json['amount'],
+            uchet: json['uchet']
         );
     }
 
@@ -33,6 +35,7 @@ class Naryad {
             data['items'] = this.items!.map((v) => v.toJson()).toList();
         }
         data['amount'] = this.amount;
+        data['uchet'] = this.uchet;
         return data;
     }
 }
