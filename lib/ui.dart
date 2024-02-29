@@ -28,9 +28,9 @@ class Ui {
   // static final urllogin = "dv_test/hs/mobile/auth/";
 
   static final url = "http://driversvillage.uz:58880/";
-  static final urlzakaz = "dv/hs/mobile/zakaz/";
-  static final urlvirabotka = "dv/hs/mobile/virabotka/";
-  static final urlservice = "dv/hs/mobile/service/";
-  static final urllogin = 'dv/hs/mobile/auth/';
-  static final urlvirabotkapodnyam = "dv/hs/mobile/virabotkapodnyam/";
+  static final urlzakaz = "dv_test/hs/mobile/zakaz/";
+  static final urlvirabotka = "dv_test/hs/mobile/virabotka/";
+  static final urlservice = "dv_test/hs/mobile/service/";
+  static final urllogin = 'dv_test/hs/mobile/auth/';
+  static final urlvirabotkapodnyam = "dv_test/hs/mobile/virabotkapodnyam/";
 }

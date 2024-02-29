@@ -102,7 +102,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                       ? MediaQuery.of(context).size.height / 4.0
                                       : 150 +
                                           (_listNaryad[index].items!.length *
-                                              55),
+                                              60),
                                   padding: EdgeInsets.all(5),
                                   decoration: BoxDecoration(
                                       border: Border.all(
@@ -165,7 +165,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                             children: [
                                               Container(
                                                 alignment: Alignment.center,
-                                                width: 100,
+                                                width: 150,
                                                 padding: EdgeInsets.all(5),
                                                 decoration: BoxDecoration(
                                                     color: _listNaryad[index]
@@ -190,7 +190,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                               ),
                                               !_listNaryad[index].uchet!
                                                   ? Container(
-                                                      width: 100,
+                                                      width: 150,
                                                       padding:
                                                           EdgeInsets.all(5),
                                                       height: 30,
@@ -213,6 +213,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 10),
+                                                        textAlign: TextAlign.center,
                                                       ),
                                                     )
                                                   : SizedBox()
@@ -277,6 +278,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                           ],
                                         ),
                                       ),
+                                      SizedBox(height: 10,),
                                       !_rows[index]
                                           ? Container()
                                           : Expanded(
@@ -285,6 +287,7 @@ class _NaryadPageState extends State<NaryadPage> {
                                                 width: 0.5,
                                               ),
                                               headingRowHeight: 20,
+                                              dataRowHeight: 30,
                                               headingRowColor:
                                                   MaterialStateProperty.all(
                                                       Colors.blueAccent),

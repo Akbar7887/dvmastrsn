@@ -146,6 +146,30 @@ class DrawerDv extends StatelessWidget {
                 child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
                     child: Text(
+                      "Предпродажка",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: Ui.fontMontserrat),
+                    )),
+
+                onTap: () {
+                  _conroller.changePage(3);
+                  Navigator.pop(context);
+
+                  // Scaffold.of(context).closeDrawer();
+                },
+                // mouseCursor: MouseCursor.defer,
+                // onTap: () {},
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider(color: Colors.white24),
+              ),
+              InkWell(
+                child: Padding(
+                    padding: EdgeInsets.only(left: 20, right: 20),
+                    child: Text(
                       "Выход",
                       style: TextStyle(
                           color: Colors.white,

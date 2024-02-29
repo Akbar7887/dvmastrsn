@@ -2,6 +2,7 @@ import 'package:dvmastrsn/models/AutoService.dart';
 import 'package:dvmastrsn/models/Login.dart';
 import 'package:dvmastrsn/models/Naryad.dart';
 import 'package:dvmastrsn/models/Virabotka.dart';
+import 'package:dvmastrsn/pages/presale_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,6 +70,9 @@ class Controller extends GetxController {
         break;
       case 2:
         return ServicePage();
+        break;
+      case 3:
+        return PreSalePage();
         break;
       default:
         return Center(child: CircularProgressIndicator());
