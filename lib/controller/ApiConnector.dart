@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dvmastrsn/controller/Controller.dart';
+import 'package:dvmastrsn/models/Peredprodajka.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -73,4 +74,19 @@ class ApiConnector extends GetConnect {
       return throw Exception("Error");
     }
   }
+  Future<bool> sentPeredprodajka(String url, Peredprodajka peredprodajka) async {
+    Uri uri = Uri();
+
+    uri = Uri.parse("${Ui.url}${url}");
+
+    final response = await http.post(uri, body: json.encode(peredprodajka), headers: header);
+
+    if (response.statusCode == 200
+        || response.statusCode == 201) {
+      return jsonDecode(utf8.decode(response.bodyBytes));
+    } else {
+      return throw Exception("Error");
+    }
+  }
+
 }

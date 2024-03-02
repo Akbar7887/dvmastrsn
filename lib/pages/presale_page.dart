@@ -1,4 +1,5 @@
 import 'package:dvmastrsn/controller/Controller.dart';
+import 'package:dvmastrsn/models/Peredprodajka.dart';
 import 'package:dvmastrsn/ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -94,6 +95,8 @@ class PreSalePage extends StatelessWidget {
                                       value[0]!);
                                 }
                               }
+                              _seachController.clear();
+
                             });
                           },
                           child: _controller.progres.value == false
@@ -216,11 +219,23 @@ class PreSalePage extends StatelessWidget {
                         side: BorderSide(color: Colors.white, width: 0.5)),
                   ),
                   onPressed: () {
-                    // _controller.listAutomobileForSend.value.clear();
-                    // _controller.listAutomobile.value.clear();
+                    _controller.progres.value = true;
+                    Peredprodajka peredprodajka = Peredprodajka();
+                    peredprodajka.tabel = _controller.login.value.tabel;
+                    peredprodajka.vins = _controller.listAutomobileForSend.value
+                        .map((e) => e.vin!)
+                        .toList();
+                    _controller.sentPeredprodajka(peredprodajka).then((value) {
+                      _controller.listAutomobileForSend.value.clear();
+                      _controller.listAutomobile.value.clear();
+                      _seachController.clear();
+                      _controller.listAutomobileForSend.refresh();
+                      _controller.listAutomobile.refresh();
+                      _controller.progres.value = false;
 
+                    });
                   },
-                  child: Text(
+                  child: _controller.progres.value?CircularProgressIndicator():Text(
                     "Закрыть документ",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),

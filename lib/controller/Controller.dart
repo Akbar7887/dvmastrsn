@@ -6,6 +6,7 @@ import 'package:dvmastrsn/pages/presale_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../models/Peredprodajka.dart';
 import '../pages/naryad_page.dart';
 import '../pages/service_page.dart';
 import '../pages/virabotka_page.dart';
@@ -63,6 +64,11 @@ class Controller extends GetxController {
     final json = await api.getAuto(Ui.urlauto, vin);
     return json.map((e) => Automobile.fromJson(e)).toList();
   }
+
+  Future<bool> sentPeredprodajka(Peredprodajka peredprodajka) async {
+    return await api.sentPeredprodajka(Ui.urlsentPereprodajka, peredprodajka);
+  }
+
 
   selectPage() {
     switch (this.page.value) {
