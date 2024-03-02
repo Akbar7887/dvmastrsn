@@ -1,4 +1,4 @@
-import 'package:dvmastrsn/models/AutoService.dart';
+import 'package:dvmastrsn/models/Automobile.dart';
 import 'package:dvmastrsn/models/Login.dart';
 import 'package:dvmastrsn/models/Naryad.dart';
 import 'package:dvmastrsn/models/Virabotka.dart';
@@ -17,25 +17,19 @@ class Controller extends GetxController {
   var listNaryad = <Naryad>[].obs;
   var listVirabotka = <Virabotka>[].obs;
   var login = Login().obs;
+  var listAutomobile = <Automobile>[].obs;
+  var listAutomobileForSend = <Automobile>[].obs;
+  var progres = false.obs;
 
-  // var listAutoService = <AutoService>[].obs;
   var page = 0.obs;
-  // var fio = "".obs;
 
-  // var tabel = "".obs;
 
-  // var pageService = 0.obs;
 
   @override
   onInit() {
     super.onInit();
 
     this.page.value = 0;
-    // this.tabel.value = "DVБП-00175";
-    // fetchListNyad("DVБП-00183");
-    this.page.value = 0;
-    // this.fio.value = "Toshmat EFGREG ergvREGV";
-    // fetchListAutoService("0");
   }
 
   fetchListNyad(String id, String date) async {
@@ -54,10 +48,20 @@ class Controller extends GetxController {
     update();
   }
 
- Future<Login> enterlogin(String tabel, String pass) async {
+  void changeListlistAutomobileForSend(Automobile automobile){
+    this.listAutomobileForSend.value.add(automobile);
+    update();
+  }
+
+  Future<Login> enterlogin(String tabel, String pass) async {
     final json = await api.getLogin(Ui.urllogin, tabel, pass);
 
     return Login.fromJson(json);
+  }
+
+  Future<List<Automobile>> getListAutomobile(String vin) async {
+    final json = await api.getAuto(Ui.urlauto, vin);
+    return json.map((e) => Automobile.fromJson(e)).toList();
   }
 
   selectPage() {

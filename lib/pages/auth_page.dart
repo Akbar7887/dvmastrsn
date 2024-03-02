@@ -200,15 +200,18 @@ class _AuthPageState extends State<AuthPage> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Ui.backColorFrom,
+
                             foregroundColor: Colors.white,
                             textStyle: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontFamily: Ui.fontMontserrat,
                                 fontWeight: FontWeight.bold),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            )),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              side: BorderSide(color: Colors.white, width: 0.5)),),
                         onPressed: () {
                           setState(() {
                             showProgres = true;

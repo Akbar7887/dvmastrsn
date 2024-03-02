@@ -47,8 +47,8 @@ class ApiConnector extends GetConnect {
       throw Exception("Error");
     }
   }
-  Future<dynamic> getLogin(
-      String url, String tabel, String pass) async {
+
+  Future<dynamic> getLogin(String url, String tabel, String pass) async {
     Uri uri = Uri.parse("${Ui.url}${url}${tabel}/$pass");
 
     final response = await http.get(uri, headers: header);
@@ -57,6 +57,20 @@ class ApiConnector extends GetConnect {
       return jsonDecode(utf8.decode(response.bodyBytes));
     } else {
       throw Exception("Error");
+    }
+  }
+
+  Future<List<dynamic>> getAuto(String url, String vin) async {
+    Uri uri = Uri();
+
+    uri = Uri.parse("${Ui.url}${url}${vin}");
+
+    final response = await http.get(uri, headers: header);
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(utf8.decode(response.bodyBytes));
+    } else {
+      return throw Exception("Error");
     }
   }
 }

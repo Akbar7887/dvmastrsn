@@ -33,4 +33,5 @@ class Ui {
   static final urlservice = "dv_test/hs/mobile/service/";
   static final urllogin = 'dv_test/hs/mobile/auth/';
   static final urlvirabotkapodnyam = "dv_test/hs/mobile/virabotkapodnyam/";
+  static final urlauto = "dv_test/hs/mobile/auto/";
 }
