@@ -100,7 +100,7 @@ Widget BottomNavBar() {
               Icons.emoji_transportation,
               color: Colors.white,
             ),
-            title: "Предпродажка",
+            title: "Предп-ка",
             // activeIcon: Icon(
             //   Icons.miscellaneous_services,
             //   color: Ui.backColorFrom,

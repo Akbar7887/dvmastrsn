@@ -21,6 +21,7 @@ class Controller extends GetxController {
   var listAutomobile = <Automobile>[].obs;
   var listAutomobileForSend = <Automobile>[].obs;
   var progres = false.obs;
+  var progresSent = false.obs;
 
   var page = 0.obs;
 

@@ -46,6 +46,7 @@ class PreSalePage extends StatelessWidget {
                               fontFamily: Ui.fontPlaybold),
                           cursorColor: Colors.white,
                           controller: _seachController,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               hintText: "Вин 6 цифр",
                               labelText: "Вин 6 цифр",
@@ -73,6 +74,10 @@ class PreSalePage extends StatelessWidget {
                                   ),
                                   side: BorderSide(color: Colors.white))),
                           onPressed: () {
+                            if (_seachController.text.length != 6) {
+                              _controller.progres.value = false;
+                              return;
+                            }
                             if (_seachController.text.isEmpty) {
                               _controller.progres.value = false;
                               return;
@@ -96,7 +101,6 @@ class PreSalePage extends StatelessWidget {
                                 }
                               }
                               _seachController.clear();
-
                             });
                           },
                           child: _controller.progres.value == false
@@ -165,43 +169,59 @@ class PreSalePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white38,
                       border: Border.all(color: Colors.white)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
                     children: [
+                      Expanded(
+                          flex: 5,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  element.vin.toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontFamily: Ui.fontMontserrat,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Container(
+                                  child: Row(
+                                children: [
+                                  Container(
+                                      width: 120,
+                                      child: Text(
+                                        element.model.toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontFamily: Ui.fontMontserrat,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                  Container(
+                                      width: 40,
+                                      child: Text(
+                                        element.color.toString(),
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15,
+                                            fontFamily: Ui.fontMontserrat,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ],
+                              ))
+                            ],
+                          )),
+                      VerticalDivider(color: Colors.white,width: 1,),
                       Container(
-                        child: Text(
-                          element.vin.toString(),
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontFamily: Ui.fontMontserrat,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                          child: Row(
-                        children: [
-                          Container(
-                              width: 120,
-                              child: Text(
-                                element.model.toString(),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontFamily: Ui.fontMontserrat,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                          Container(
-                              width: 40,
-                              child: Text(
-                                element.color.toString(),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
-                                    fontFamily: Ui.fontMontserrat,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                        ],
+                        width: 40,
+                          child: IconButton(
+                        onPressed: () {
+                          _controller.listAutomobileForSend.value.remove(element);
+                          _controller.listAutomobileForSend.refresh();
+                        },
+                        icon: Icon(Icons.delete_forever_sharp, color: Colors.white,),
                       ))
                     ],
                   ));
@@ -219,7 +239,7 @@ class PreSalePage extends StatelessWidget {
                         side: BorderSide(color: Colors.white, width: 0.5)),
                   ),
                   onPressed: () {
-                    _controller.progres.value = true;
+                    _controller.progresSent.value = true;
                     Peredprodajka peredprodajka = Peredprodajka();
                     peredprodajka.tabel = _controller.login.value.tabel;
                     peredprodajka.vins = _controller.listAutomobileForSend.value
@@ -231,14 +251,15 @@ class PreSalePage extends StatelessWidget {
                       _seachController.clear();
                       _controller.listAutomobileForSend.refresh();
                       _controller.listAutomobile.refresh();
-                      _controller.progres.value = false;
-
+                      _controller.progresSent.value = false;
                     });
                   },
-                  child: _controller.progres.value?CircularProgressIndicator():Text(
-                    "Закрыть документ",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
+                  child: _controller.progresSent.value
+                      ? CircularProgressIndicator()
+                      : Text(
+                          "Закрыть документ",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
                 ))
           ],
         )));
